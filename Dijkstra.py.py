@@ -1,11 +1,47 @@
+import random
+
+rspawn = random.randint(0,5)
+tspawn = random.randint(0,5)
+print rspawn
+
+if rspawn == 0:
+    rstart = 's'
+elif rspawn == 1:
+    rstart = 'a'
+elif rspawn == 2:
+    rstart = 'b'
+elif rspawn ==3:
+    rstart = 'c'
+elif rspawn == 4:
+    rstart = 'd'
+elif rspawn == 5:
+    rstart = 't'
+print rstart
+
+def tspawn(treasure):
+    if tspawn == 0:
+        treasure = 'a'
+    elif tspawn == 1:
+        treasure = 'b'
+    elif tspawn == 2:
+        treasure = 'c'
+    elif tspawn ==3:
+        treasure = 'd'
+    elif tspawn == 4:
+        treasure = 't'
+    elif tspawn == 5:
+        treasure = 's'
+    print start
+
 """
 This code has been adapted from code taken from the site
 http://geekly-yours.blogspot.co.uk/2014/03/dijkstra-algorithm-python-example-source-code-shortest-path.html
 
 """
+
 def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
     """ calculates a shortest path tree routed in src
-    """    
+    """
     # a few sanity checks
     if src not in graph:
         raise TypeError('the root of the shortest path tree cannot be found in the graph')
@@ -19,10 +55,12 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         while pred != None:
             path.append(pred)
             pred=predecessors.get(pred,None)
+            print pred
         print('shortest path: '+str(path)+" cost="+str(distances[dest]))
-        print path[0]
+        print path
+        
     else :     
-        # if it is the initial  run, initializes the cost
+        # if it is the initial run, initializes the cost
         if not visited: 
             distances[src]=0
         # visit the neighbors
@@ -55,4 +93,4 @@ if __name__ == "__main__":
             'c': {'a': 2, 'd': 7, 't': 4},
             'd': {'b': 2, 'c': 7, 't': 5},
             't': {'c': 4, 'd': 5}}
-    dijkstra(graph,'d','t')
+    dijkstra(graph,rstart,tspawn.treasure)
