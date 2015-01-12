@@ -1,7 +1,5 @@
 import random
-
 rspawn = random.randint(0,5)
-tspawn = random.randint(0,5)
 print rspawn
 
 if rspawn == 0:
@@ -18,20 +16,19 @@ elif rspawn == 5:
     rstart = 't'
 print rstart
 
-def tspawn(treasure):
-    if tspawn == 0:
-        treasure = 'a'
-    elif tspawn == 1:
-        treasure = 'b'
-    elif tspawn == 2:
-        treasure = 'c'
-    elif tspawn ==3:
-        treasure = 'd'
-    elif tspawn == 4:
-        treasure = 't'
-    elif tspawn == 5:
-        treasure = 's'
-    print start
+tspawn = random.randint(0,5)
+if tspawn == 0:
+    treasure = 'a'
+elif tspawn == 1:
+    treasure = 'b'
+elif tspawn == 2:
+    treasure = 'c'
+elif tspawn ==3:
+    treasure = 'd'
+elif tspawn == 4:
+    treasure = 't'
+elif tspawn == 5:
+    treasure = 's'
 
 """
 This code has been adapted from code taken from the site
@@ -93,4 +90,4 @@ if __name__ == "__main__":
             'c': {'a': 2, 'd': 7, 't': 4},
             'd': {'b': 2, 'c': 7, 't': 5},
             't': {'c': 4, 'd': 5}}
-    dijkstra(graph,rstart,tspawn.treasure)
+    dijkstra(graph,rstart,treasure)
