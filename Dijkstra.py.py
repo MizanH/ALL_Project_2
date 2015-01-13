@@ -1,6 +1,5 @@
 import random
 rspawn = random.randint(0,5)
-print rspawn
 
 if rspawn == 0:
     rstart = 's'
@@ -14,21 +13,26 @@ elif rspawn == 4:
     rstart = 'd'
 elif rspawn == 5:
     rstart = 't'
-print rstart
 
 tspawn = random.randint(0,5)
+print rspawn
+print tspawn
+if rspawn == tspawn:
+    print 'Respawning treasure'
+    tspawn = random.randint(0,5)
+    print tspawn
 if tspawn == 0:
-    treasure = 'a'
-elif tspawn == 1:
-    treasure = 'b'
-elif tspawn == 2:
-    treasure = 'c'
-elif tspawn ==3:
-    treasure = 'd'
-elif tspawn == 4:
-    treasure = 't'
-elif tspawn == 5:
     treasure = 's'
+elif tspawn == 1:
+    treasure = 'a'
+elif tspawn == 2:
+    treasure = 'b'
+elif tspawn ==3:
+    treasure = 'c'
+elif tspawn == 4:
+    treasure = 'd'
+elif tspawn == 5:
+    treasure = 't'
 
 """
 This code has been adapted from code taken from the site
@@ -79,11 +83,10 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         x=min(unvisited, key=unvisited.get)
         dijkstra(graph,x,dest,visited,distances,predecessors)
         
-
+"""
+"""
 
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
-    #unittest.main()
     graph = {'s': {'a': 2, 'b': 1},
             'a': {'s': 2, 'b': 4, 'c': 2},
             'b': {'s': 1, 'a': 4, 'd': 2},
