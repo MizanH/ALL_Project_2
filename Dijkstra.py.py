@@ -1,39 +1,26 @@
 import random
-rspawn = random.randint(0,5)
-
-if rspawn == 0:
-    rstart = 's'
-elif rspawn == 1:
-    rstart = 'a'
-elif rspawn == 2:
-    rstart = 'b'
-elif rspawn ==3:
-    rstart = 'c'
-elif rspawn == 4:
-    rstart = 'd'
-elif rspawn == 5:
-    rstart = 't'
-
-tspawn = random.randint(0,5)
-print rspawn
-print tspawn
-if rspawn == tspawn:
-    print 'Respawning treasure'
-    tspawn = random.randint(0,5)
-    print tspawn
+import time
+rspawn = random.randint(0,3)
+tspawn = random.randint(0,3)
+    
 if tspawn == 0:
-    treasure = 's'
+    treasure = 't'
 elif tspawn == 1:
     treasure = 'a'
 elif tspawn == 2:
-    treasure = 'b'
+    treasure = 'e'
 elif tspawn ==3:
-    treasure = 'c'
-elif tspawn == 4:
-    treasure = 'd'
-elif tspawn == 5:
-    treasure = 't'
+    treasure = 'g'
 
+if rspawn == 0:
+    rstart = 'c'
+elif rspawn == 1:
+    rstart = 'j'
+elif rspawn == 2:
+    rstart = 'd'
+elif rspawn ==3:
+    rstart = 'i'
+    
 """
 This code has been adapted from code taken from the site
 http://geekly-yours.blogspot.co.uk/2014/03/dijkstra-algorithm-python-example-source-code-shortest-path.html
@@ -58,7 +45,10 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
             pred=predecessors.get(pred,None)
             print pred
         print('shortest path: '+str(path)+" cost="+str(distances[dest]))
-        print path
+        path =[]
+        
+        
+                
         
     else :     
         # if it is the initial run, initializes the cost
@@ -72,25 +62,38 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
                     distances[neighbor] = new_distance
                     predecessors[neighbor] = src
         # mark as visited
+        
         visited.append(src)
         # now that all neighbors have been visited: recurse                         
         # select the non visited node with lowest distance 'x'
         # run Dijskstra with src='x'
-        unvisited={}
+        
+        unvisited = {}
         for k in graph:
             if k not in visited:
                 unvisited[k] = distances.get(k,float('inf'))        
         x=min(unvisited, key=unvisited.get)
+        
         dijkstra(graph,x,dest,visited,distances,predecessors)
         
 """
 """
 
 if __name__ == "__main__":
-    graph = {'s': {'a': 2, 'b': 1},
-            'a': {'s': 2, 'b': 4, 'c': 2},
-            'b': {'s': 1, 'a': 4, 'd': 2},
-            'c': {'a': 2, 'd': 7, 't': 4},
-            'd': {'b': 2, 'c': 7, 't': 5},
-            't': {'c': 4, 'd': 5}}
+    graph = {'t': {'a': 1, 'b': 5},
+            'a': {'t': 1, 'b': 4, 'e': 2},
+            'b': {'a': 4, 't': 5, 'e': 4, 'f': 6},
+            'e': {'a': 2, 'b': 4, 'g': 1},
+            'c': {'f': 3, 'j': 1},
+            'f': {'b': 6, 'c': 3, 'g': 7, 'h': 2},
+            'j': {'c': 1, 'd': 5},
+            'g': {'e': 1, 'f': 7, 's': 1},
+            'd': {'j': 5, 'h': 6, 'i': 3},
+            's': {'g': 1, 'h': 2},
+            'h': {'s': 2, 'f': 2, 'i': 4},
+            'i': {'h': 4, 'd': 3}}
+    print 'treasure ' + treasure
+    print 'start ' + rstart
     dijkstra(graph,rstart,treasure)
+    time.sleep(3)
+    
