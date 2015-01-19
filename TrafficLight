@@ -1,5 +1,4 @@
 import pygame
-from math import pi
 import time
 from random import randint
 
@@ -54,7 +53,7 @@ while not done:
     screen.fill(WHITE)
     Green()
     pygame.display.flip()
-    pygame.time.wait(2000)
+    pygame.time.wait(a)
     screen.fill(WHITE)
     Amber()
     pygame.display.flip()
@@ -62,4 +61,4 @@ while not done:
     screen.fill(WHITE)
     Red()
     pygame.display.flip()
-    pygame.time.wait(a)
+    pygame.time.wait(3500)
