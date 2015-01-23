@@ -1,0 +1,63 @@
+import pygame
+import sys
+
+pygame.init()
+screen = pygame.display.set_mode((1280,720))
+print screen;
+
+pygame.display.update()
+colorName=("red","green","blue","black","white")
+listOfColors=(0,255,0,0)
+screen.fill(listOfColors)
+
+RED=(255,0,0)
+WHITE = (255,255,255)
+BLACK = (0,0,0)
+BLUE = (0,0,255)
+#pygame.draw.lines(screen, red, False ,[(100,100),(150,200),(200,100)],5)
+
+def line(coods1, coods2):
+        print pygame.draw.lines(screen, RED, False,[coods1,coods2], 5)
+
+def drawDiamond(x,y,n,colour):
+    pygame.draw.polygon(screen, colour,[[x,y],[x+n,y+n],[x, y+2*n],[x-n,y+n]])
+
+
+pygame.display.update()
+
+testline = line((100, 100),(50, 200))
+testline2 = line ((50,200),(180,200))
+testline3 = line((100,100),(190,200))
+testline4 = line((120,300),(190,200))
+testline5 = line((50,200),(120,300))
+testline6 = line((120,300),(50,400))
+testline7 = line((50,400),(190,400))
+testline8 = line((190,400),(260,300))
+testline9 = line((260,300),(180,200))
+testline10 = line((190,400),(350,400))
+testline11 =line((350,400),(260,300))
+testline12 =line((260,300),(300,200))
+testline13 =line((350,400),(420,300))
+testline14 =line((420,300),(450,200))
+testline15 = line((450,200),(300,200))
+testline16 = line((350,400),(500,400))
+testline17 = line((500,400),(420,300))
+
+diamond1 = drawDiamond(100,95,15,BLACK)
+diamond2 = drawDiamond(50,188,15,BLACK)
+diamond3 = drawDiamond(190,188,15,BLACK)
+diamond4 = drawDiamond(120,288,15,BLACK)
+diamond5 = drawDiamond(50,388,15,BLACK)
+diamond6 = drawDiamond(190,388,15,BLACK)
+diamond7 = drawDiamond(260,288
+                       ,15,BLACK)
+diamond8 = drawDiamond(350,388,15,BLACK)
+diamond9 = drawDiamond(300,188,15,BLACK)
+diamond10 = drawDiamond(450,188,15,BLACK)
+diamond11 = drawDiamond(500,388,15,BLACK)
+diamond12 = drawDiamond(420,288,15,BLACK)
+
+pygame.display.update()
+raw_input("Press enter to quit")
+
+pygame.quit()

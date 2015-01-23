@@ -3,7 +3,7 @@ import time
 from random import randint
 
 pygame.init()
-
+# Need to define a colour before using a colour
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
 GREEN = (  0, 255,   0)
@@ -17,10 +17,10 @@ pygame.display.set_caption("Traffic Light")
 
 done= False
 clock = pygame.time.Clock()
-
+# Defining the states of the traffic 
 a = randint(2000, 10000)
 
-
+# Defining the states of the traffic
 def Green():
     pygame.draw.rect(screen, BLACK, [200, 100, 100, 300])
     pygame.draw.circle(screen, GREEN, [250, 350], 40)
@@ -48,7 +48,7 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done=True
-
+# Actual traffic light code
     screen.fill(WHITE)
     Green()
     pygame.display.flip()
