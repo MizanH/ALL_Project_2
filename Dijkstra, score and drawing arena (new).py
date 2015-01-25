@@ -60,7 +60,7 @@ def drawScreen():
     line5 = line((80,265),(170,385))
     line6 = line((170,385),(100,505))
     line7 = line((100,505),(300,505))
-    line8 = line((300,505),(400,380))
+    line8 = line((100,505),(400,380))
     line9 = line((280,265),(400,380))
     line10 = line((300,505),(540,505))
     line11 =line((400,380),(540,505))
@@ -71,18 +71,18 @@ def drawScreen():
     line16 = line((540,505),(800,505))
     line17 = line((800,505),(700,380))
 
-    diamond1 = drawDiamond(150,130,15,BLACK)
-    diamond2 = drawDiamond(80,250,15,BLACK)
-    diamond3 = drawDiamond(280,250,15,BLACK)
-    diamond4 = drawDiamond(170,370,15,BLACK)
-    diamond5 = drawDiamond(100,490,15,BLACK)
+    diamondt = drawDiamond(150,130,15,BLACK)
+    diamonda = drawDiamond(80,250,15,BLACK)
+    diamondb = drawDiamond(280,250,15,BLACK)
+    diamonde = drawDiamond(170,370,15,BLACK)
+    diamondg = drawDiamond(100,490,15,BLACK)
     diamond6 = drawDiamond(300,490,15,BLACK)
-    diamond7 = drawDiamond(400,370,15,BLACK)
-    diamond8 = drawDiamond(540,490,15,BLACK)
-    diamond9 = drawDiamond(500,250,15,BLACK)
-    diamond10 = drawDiamond(750,250,15,BLACK)
-    diamond11 = drawDiamond(800,490,15,BLACK)
-    diamond12 = drawDiamond(700,370,15,BLACK)
+    diamondf = drawDiamond(400,370,15,BLACK)
+    diamondh = drawDiamond(540,490,15,BLACK)
+    diamondc = drawDiamond(500,250,15,BLACK)
+    diamondj = drawDiamond(750,250,15,BLACK)
+    diamondi = drawDiamond(800,490,15,BLACK)
+    diamondd = drawDiamond(700,370,15,BLACK)
 
 
 def spawn():
@@ -161,8 +161,8 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         x=min(unvisited, key=unvisited.get)
         
         dijkstra(graph,x,dest,visited,distances,predecessors)
-ax = 20
-ay = 30
+ax = 0
+ay = 0
 def movement(destx, desty,):
     bx,by=(destx,desty)
     steps_number = max( abs(bx-ax), abs(by-ay) )
@@ -179,10 +179,12 @@ def movement(destx, desty,):
         
         print int(ax + stepx*i), int(ay + stepy*i)
         
-        rectangle = pygame.draw.rect(screen, RED,(currentx,currenty, 25,  25 ))
+        
         drawScreen()
+        rectangle = pygame.draw.rect(screen, RED,(currentx,currenty, 25,  25 ))
         treasureCounter.drawCounter()
         scoreCounter.drawCounter()
+        
         time.sleep(0.1)
         pygame.display.update()
 
@@ -202,7 +204,33 @@ if __name__ == "__main__":
             's': {'g': 3, 'h': 2},
             'h': {'s': 2, 'f': 2, 'i': 4, 'd':6},
             'i': {'h': 4, 'd': 3}}
-
+    
+    tx= 140
+    ty= 135
+    alx= 70
+    aly= 255
+    bx= 270
+    by= 255
+    ex= 160
+    ey= 375
+    gx= 90
+    gy= 495
+    sx= 290
+    sy= 495
+    fx= 390
+    fy= 375
+    hx= 530
+    hy= 495
+    cx= 490
+    cy= 255
+    jx= 740
+    jy= 255
+    ix= 790
+    iy= 495
+    dx= 690
+    dy= 375
+    
+    
     #defining the treasure/score counter and calling the draw function
     treasureCounter = Counter(0,1160,410)
     treasureCounter.drawCounter()
@@ -210,12 +238,13 @@ if __name__ == "__main__":
     scoreCounter.drawCounter()
     drawScreen()
     dijkstra(graph,rstart,treasure , [], {}, {})
+    ax =alx
+    ay = aly
+    movement(tx,ty)
 
-    movement(40, 100)
-
-    ax = int(currentx)
-    ay = int(currenty)
-    movement(200, 50)
+    #ax = int(currentx)
+    #ay = int(currenty)
+    #movement(200, 50)
     """
     time.sleep(3)
     spawn()
