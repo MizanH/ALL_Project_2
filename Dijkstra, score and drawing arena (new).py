@@ -161,6 +161,29 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         x=min(unvisited, key=unvisited.get)
         
         dijkstra(graph,x,dest,visited,distances,predecessors)
+ax = 20
+ay = 30
+def movement(destx, desty,):
+    bx,by=(destx,desty)
+    steps_number = max( abs(bx-ax), abs(by-ay) )
+    stepx = float(bx-ax)/steps_number
+    stepy = float(by-ay)/steps_number
+    
+    for i in range(steps_number+1):
+        screen.fill(WHITE)
+        treasureCounter.drawCounter()
+        scoreCounter.drawCounter()
+        drawScreen()
+        currentx = ax + stepx*i
+        currenty = ay + stepy*i
+        global currentx
+        global currenty
+        print int(ax + stepx*i), int(ay + stepy*i)
+        
+        rectangle = pygame.draw.rect(screen, RED,(currentx,currenty, 25,  25 ))
+    
+        time.sleep(0.5)
+        pygame.display.update()
 
 
 """
@@ -187,6 +210,11 @@ if __name__ == "__main__":
     scoreCounter.drawCounter()
     drawScreen()
     dijkstra(graph,rstart,treasure , [], {}, {})
+    movement(40, 100)
+
+    ax = int(currentx)
+    ay = int(currenty)
+    movement(200, 50)
     """
     time.sleep(3)
     spawn()
