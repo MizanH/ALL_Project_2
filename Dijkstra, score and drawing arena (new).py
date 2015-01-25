@@ -47,7 +47,7 @@ class Counter():
 
 #defining the functions to draw lines and diamonds on the screen
 def line(coods1, coods2):
-        print pygame.draw.lines(screen, RED, False,[coods1,coods2], 5)
+        pygame.draw.lines(screen, RED, False,[coods1,coods2], 5)
 
 def drawDiamond(x,y,n,colour):
     pygame.draw.polygon(screen, colour,[[x,y],[x+n,y+n],[x, y+2*n],[x-n,y+n]])
@@ -171,20 +171,20 @@ def movement(destx, desty,):
     
     for i in range(steps_number+1):
         screen.fill(WHITE)
-        treasureCounter.drawCounter()
-        scoreCounter.drawCounter()
-        drawScreen()
-        currentx = ax + stepx*i
-        currenty = ay + stepy*i
+        
         global currentx
         global currenty
+        currentx = ax + stepx*i
+        currenty = ay + stepy*i
+        
         print int(ax + stepx*i), int(ay + stepy*i)
         
         rectangle = pygame.draw.rect(screen, RED,(currentx,currenty, 25,  25 ))
-    
-        time.sleep(0.5)
+        drawScreen()
+        treasureCounter.drawCounter()
+        scoreCounter.drawCounter()
+        time.sleep(0.1)
         pygame.display.update()
-
 
 """
 """
@@ -210,6 +210,7 @@ if __name__ == "__main__":
     scoreCounter.drawCounter()
     drawScreen()
     dijkstra(graph,rstart,treasure , [], {}, {})
+
     movement(40, 100)
 
     ax = int(currentx)
