@@ -49,9 +49,9 @@ scoreCounter = Counter(0,1160,300)
 scoreCounter.drawCounter()
 
 #calculating the addition to treasure/score counter
-if positionOfRobot == positionOfTreasure:
-    treasureCounter.addScore(1)
-    scoreCounter.addScore(15-(costOfPathTaken)
+#if positionOfRobot == positionOfTreasure:
+    #treasureCounter.addScore(1)
+    #scoreCounter.addScore(15-(costOfPathTaken))
     #run the respawning script here
 
 
