@@ -20,6 +20,26 @@ screen.fill(WHITE)
 pygame.display.update()
 pygame.display.flip()
 
+t = 140, 135
+a = 70, 255
+b = 270, 255
+e = 160, 375
+g = 90, 495
+s = 290, 495
+f = 390, 375
+h = 530, 495
+c = 490, 255
+j = 740, 255
+i = 790, 495
+d = 690, 375
+
+vardict = { 't': t, 'a': a,
+            'b': b, 'e': e,
+            'g': g, 's': s,
+            'f': f, 'h': h,
+            'c': c, 'j': j,
+            'i': i, 'd': d}
+
 #defining the class for the treasure/score counter
 class Counter():
     def __init__(self, score, x, y):
@@ -117,6 +137,8 @@ http://geekly-yours.blogspot.co.uk/2014/03/dijkstra-algorithm-python-example-sou
 def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
     """ calculates a shortest path tree routed in src
     """
+    global distan
+    global path
     # a few sanity checks
     if src not in graph:
         raise TypeError('the root of the shortest path tree cannot be found in the graph')
@@ -124,8 +146,7 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         raise TypeError('the target of the shortest path cannot be found in the graph')    
     # ending condition
     if src == dest:
-        treasureCounter.addScore(1)
-        scoreCounter.addScore(30-(distances[dest]))
+        
         # We build the shortest path and display it
         path=[]
         pred=dest
@@ -133,6 +154,7 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
             path.append(pred)
             pred=predecessors.get(pred,None)
             print pred
+            distan = distances[dest]
         print('shortest path: '+str(path)+" cost="+str(distances[dest]))
             
     else :     
@@ -161,11 +183,43 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         x=min(unvisited, key=unvisited.get)
         
         dijkstra(graph,x,dest,visited,distances,predecessors)
+global ax
+global ay        
+
 ax = 0
 ay = 0
-def movement(dest):
+test = ()
+
+def iteratepath():
+    global x
+    global test
+    x = len(path)
+    if x > 1:
+        print path[x-1]
+        if test == ():
+            test = vardict[path[x-1]]
+        
+        print ax
+        movement(vardict[path[x-1]], test)
+        test = vardict[path[x-1]]
+        
+        path.pop(x-1)
+        
+        x -= 1
+        iteratepath()
+    elif x==1:
+        endpos = path[0]
+        movement(vardict[path[0]], test)
+        test = vardict[path[0]]
+        treasureCounter.addScore(1)
+        scoreCounter.addScore(30-(distan))
+        print endpos
+def movement(dest, start):
+    ax,ay = (start)
     bx,by=(dest)
     steps_number = max( abs(bx-ax), abs(by-ay) )
+    if steps_number < 1:
+        steps_number =1
     stepx = float(bx-ax)/steps_number
     stepy = float(by-ay)/steps_number
     
@@ -177,7 +231,7 @@ def movement(dest):
         currentx = ax + stepx*i
         currenty = ay + stepy*i
         
-        print int(ax + stepx*i), int(ay + stepy*i)
+        int(ax + stepx*i), int(ay + stepy*i)
         
         
         drawScreen()
@@ -185,9 +239,8 @@ def movement(dest):
         treasureCounter.drawCounter()
         scoreCounter.drawCounter()
         
-        time.sleep(0.1)
+        time.sleep(0.01)
         pygame.display.update()
-
 """
 """
 
@@ -204,42 +257,7 @@ if __name__ == "__main__":
             's': {'g': 3, 'h': 2},
             'h': {'s': 2, 'f': 2, 'i': 4, 'd':6},
             'i': {'h': 4, 'd': 3}}
-    tl =140, 135
-    #tx= 140
-    #ty= 135
-    al = 70, 255
-    #alx= 70
-    #aly= 255
-    bl = 270, 255
-    #bx= 270
-    #by= 255
-    el = 160, 375
-    #ex= 160
-    #ey= 375
-    gl = 90, 495
-    #gx= 90
-    #gy= 495
-    sl = 290, 495
-    #sx= 290
-    #sy= 495
-    fl = 390, 375
-    #fx= 390
-    #fy= 375
-    hl = 530, 495
-    #hx= 530
-    #hy= 495
-    cl = 490, 255
-    #cx= 490
-    #cy= 255
-    jl = 740, 255
-    #jx= 740
-    #jy= 255
-    il = 790, 495
-    #ix= 790
-    #iy= 495
-    dl = 690, 375
-    #dx= 690
-    #dy= 375
+    
     
     
     #defining the treasure/score counter and calling the draw function
@@ -249,12 +267,9 @@ if __name__ == "__main__":
     scoreCounter.drawCounter()
     drawScreen()
     dijkstra(graph,rstart,treasure , [], {}, {})
-    ax,ay = al
-    movement(tl)
-
-    #ax = int(currentx)
-    #ay = int(currenty)
-    #movement(200, 50)
+    
+    iteratepath()
+    
     """
     time.sleep(3)
     spawn()
