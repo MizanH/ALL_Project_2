@@ -20,18 +20,18 @@ screen.fill(WHITE)
 pygame.display.update()
 pygame.display.flip()
 
-t = 140, 135
-a = 70, 255
-b = 270, 255
-e = 160, 375
-g = 90, 495
-s = 290, 495
-f = 390, 375
-h = 530, 495
-c = 490, 255
-j = 740, 255
-i = 790, 495
-d = 690, 375
+t = 145, 138
+a = 75, 258
+b = 275, 258
+e = 165, 378
+g = 95, 498
+s = 295, 498
+f = 395, 378
+h = 535, 498
+c = 495, 258
+j = 745, 258
+i = 795, 498
+d = 695, 378
 
 vardict = { 't': t, 'a': a,
             'b': b, 'e': e,
@@ -104,6 +104,7 @@ def drawScreen():
     diamondj = drawDiamond(750,250,15,BLACK)
     diamondi = drawDiamond(800,490,15,BLACK)
     diamondd = drawDiamond(700,370,15,BLACK)
+
 
 
 def spawn():
@@ -188,20 +189,20 @@ global ay
 
 ax = 0
 ay = 0
-test = ()
+local = ()
 
 def iteratepath():
     global x
-    global test
+    global local
     x = len(path)
     if x > 1:
         print path[x-1]
-        if test == ():
-            test = vardict[path[x-1]]
+        if local == ():
+            local = vardict[path[x-1]]
         
         print ax
-        movement(vardict[path[x-1]], test)
-        test = vardict[path[x-1]]
+        movement(vardict[path[x-1]], local)
+        local = vardict[path[x-1]]
         
         path.pop(x-1)
         
@@ -209,8 +210,8 @@ def iteratepath():
         iteratepath()
     elif x==1:
         endpos = path[0]
-        movement(vardict[path[0]], test)
-        test = vardict[path[0]]
+        movement(vardict[path[0]], local)
+        local = vardict[path[0]]
         treasureCounter.addScore(1)
         scoreCounter.addScore(30-(distan))
         print endpos
@@ -224,18 +225,19 @@ def movement(dest, start):
     stepy = float(by-ay)/steps_number
     
     for i in range(steps_number+1):
-        screen.fill(WHITE)
+        #screen.fill(WHITE)
         
         global currentx
         global currenty
         currentx = ax + stepx*i
         currenty = ay + stepy*i
+
         
         int(ax + stepx*i), int(ay + stepy*i)
         
         
         drawScreen()
-        rectangle = pygame.draw.rect(screen, BLUE,(currentx,currenty, 25,  25 ))
+        rectangle = pygame.draw.rect(screen, BLUE,(currentx,currenty, 10,  10 ))
         treasureCounter.drawCounter()
         scoreCounter.drawCounter()
         
@@ -244,6 +246,7 @@ def movement(dest, start):
 """
 """
 
+    
 if __name__ == "__main__":
     graph = {'t': {'a': 1, 'b': 5},
             'a': {'t': 1, 'b': 4, 'e': 2},
@@ -266,9 +269,47 @@ if __name__ == "__main__":
     scoreCounter = Counter(0,1160,300)
     scoreCounter.drawCounter()
     drawScreen()
-    dijkstra(graph,rstart,treasure , [], {}, {})
     
+    dijkstra(graph,rstart,treasure , [], {}, {})
     iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    spawn()
+    local = ()
+    screen.fill(WHITE)
+    dijkstra(graph,rstart,treasure, [], {}, {})
+    iteratepath()
+    time.sleep(3)
+    
     
     """
     time.sleep(3)
