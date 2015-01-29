@@ -26,3 +26,12 @@ each time the robot moves there is a 1 in 100 chance that the traffic light will
 If the ight has turned amber ther robot will move 3X slower for the next 30 ticks of the program.
 Once the 30 ticks have passed the light changes to red and the program stops for 3 seconds.
 When the 3 seconds are over then the light changes back to green and the robot moves at full speed.
+
+-------------
+
+Scoring System
+-------------
+The scoring system in the game is based on the costs of the edges between nodes. Whenever the robot
+reaches the treasure, they gain 30 score, minus the cost of the sum of all paths the robot travelled
+on to reach the treasure. Each treasure collected also increases the treasure counter by 1, so that the
+user can track how many treasures they have collected
