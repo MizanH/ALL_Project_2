@@ -23,6 +23,7 @@ screen.fill(WHITE)
 pygame.display.update()
 pygame.display.flip()
 
+#defining coordinates used in the movement() function
 t = 145, 138
 a = 75, 258
 b = 275, 258
@@ -36,6 +37,7 @@ j = 745, 258
 i = 795, 498
 d = 695, 378
 
+#creating an array used with the above coordinates in the iteratepath() function
 vardict = { 't': t, 'a': a,
             'b': b, 'e': e,
             'g': g, 's': s,
@@ -43,9 +45,12 @@ vardict = { 't': t, 'a': a,
             'c': c, 'j': j,
             'i': i, 'd': d}
 
+#initialising the waitTime variable which is used to change the rate 
+#at which the screen refreshes
 global waitTime
 waitTime = 0.01
 
+#function used to draw the traffic light
 def drawTraffic(coords, colour, radius):
     pygame.draw.circle(screen, colour, coords, radius)
     pygame.display.update()
@@ -82,9 +87,11 @@ class Counter():
 def line(coods1, coods2):
         pygame.draw.lines(screen, RED, False,[coods1,coods2], 5)
 
+#function used to draw the diamond shaped landmarks
 def drawDiamond(x,y,n,colour):
     pygame.draw.polygon(screen, colour,[[x,y],[x+n,y+n],[x, y+2*n],[x-n,y+n]])
 
+#function to draw every landmark, line and label
 def drawScreen():
     line1 = line((154, 137),(80, 265))
     line2 = line ((80,265),(280,265))
@@ -136,7 +143,7 @@ def drawScreen():
     screen.blit(font1.render('3', True, BLACK),(725,425))
 
 
-
+#function to randomly generate a starting position for treasure and robot
 def spawn():
     rspawn = random.randint(0,3)
     tspawn = random.randint(0,3)
@@ -215,6 +222,7 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         
         dijkstra(graph,x,dest,visited,distances,predecessors)
 
+#function to draw the information box to detail the treasure location
 def drawBox():
     Location = {'t': 'Big Ben',
                 'a': 'London Eye',
@@ -232,6 +240,7 @@ ax = 0
 ay = 0
 local = ()
 
+#function used to redraw objects on the screen
 def iteratepath():
     global x
     global local
@@ -262,11 +271,13 @@ def iteratepath():
         drawBox()
         print endpos
         
-
+#defining variables used within the movement() function
 amberCounter = 0
 test = 0
 waitTime = 0
 counter = 0
+
+#function that makes the robot move along the lines and controls the traffic light
 def movement(dest, start):
     ax,ay = (start)
     bx,by=(dest)
@@ -330,6 +341,7 @@ def movement(dest, start):
 
     
 if __name__ == "__main__":
+            #defining the array of nodes that the robot should navigate through
     graph = {'t': {'a': 1, 'b': 5},
             'a': {'t': 1, 'b': 4, 'e': 2},
             'b': {'a': 4, 't': 5, 'e': 4, 'f': 6},
@@ -352,7 +364,7 @@ if __name__ == "__main__":
     scoreCounter.drawCounter()
     drawScreen()
     
-    
+    #calling the functions to execute the main part of the program
     dijkstra(graph,rstart,treasure , [], {}, {})
     iteratepath()
     time.sleep(3)
